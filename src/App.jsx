@@ -1,37 +1,45 @@
 import React from "react";
+import {
+  FaLinkedin,
+  FaGithub,
+  // FaLeetcode,
+  // FaHackerrank,
+  FaInstagram,
+  FaEnvelope,
+  FaPhone,
+} from "react-icons/fa";
 
 const contactInfo = [
   {
     label: "Email",
     value: "himanshug9119@gmail.com",
     link: "mailto:himanshug9119@gmail.com",
+    icon: <FaEnvelope />,
   },
   {
     label: "LinkedIn",
     value: "linkedin.com/in/himanshug9119",
     link: "https://linkedin.com/in/himanshug9119",
+    icon: <FaLinkedin />,
   },
   {
     label: "GitHub",
     value: "github.com/himanshug9119",
     link: "https://github.com/himanshug9119",
-  },
-  {
-    label: "LeetCode",
-    value: "leetcode.com/himanshug9119",
-    link: "https://leetcode.com/himanshug9119",
-  },
-  {
-    label: "Hackerrank",
-    value: "hackerrank.com/himanshug9119",
-    link: "https://hackerrank.com/himanshug9119",
+    icon: <FaGithub />,
   },
   {
     label: "Instagram",
     value: "instagram.com/himanshug9119",
     link: "https://instagram.com/himanshug9119",
+    icon: <FaInstagram />,
   },
-  { label: "Phone", value: "9918330266", link: "tel:9918330266" },
+  {
+    label: "Phone",
+    value: "9918330266",
+    link: "tel:9918330266",
+    icon: <FaPhone />,
+  },
 ];
 
 const experiences = [
@@ -40,12 +48,14 @@ const experiences = [
     duration: "June 2022 - Present",
     description:
       "Currently working in the reviews system of Expedia Group, which handles millions of requests globally.",
+    icon: "https://via.placeholder.com/100", // Placeholder icon for experience
   },
   {
     role: "Software Engineer at Paytm",
     duration: "August 2019 - May 2022",
     description:
       "Worked in various verticals like Paytm E-commerce, credit cards, and lending. Developed scalable services adaptable to new requirements.",
+    icon: "https://via.placeholder.com/100", // Placeholder icon for experience
   },
 ];
 
@@ -103,34 +113,42 @@ const App = () => {
         <div className="container mx-auto p-4">
           {/* Profile and Contact Section */}
           <div className="bg-white shadow-md rounded-lg p-6 flex flex-col md:flex-row">
-            <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-6">
-              <img
-                className="h-32 w-32 rounded-full mx-auto"
-                src="profile.jpg"
-                alt="Profile"
-              />
-              <h2 className="text-center text-3xl font-bold text-gray-800 mt-4">
+            <div className="flex-shrink-0 mb-4 md:mb-0 md:mr-6 text-center md:text-left items-center">
+              <div className="flex justify-center">
+                <img
+                  className="h-32 w-32 rounded-full mx-auto md:mx-0"
+                  src="profile.jpg"
+                  alt="Profile"
+                />
+              </div>
+              <h2 className="text-3xl font-bold text-gray-800 mt-4 text-center">
                 Himanshu Gupta
               </h2>
-              <p className="text-center text-blue-600">Software Engineer</p>
+              <p className="text-blue-600 text-center">Software Engineer</p>
             </div>
-            <div className="flex-grow">
-              <div className="text-lg font-semibold text-gray-800">
-                Contact Information
+            <div className="flex flex-col justify-center">
+              <div className="text-lg font-semibold text-gray-800 mb-4">
+                Hi, I am Himanshu Gupta, a software engineer with 3 years of
+                work experience at Paytm and Expedia Group.
               </div>
-              <ul className="mt-2 text-gray-600">
-                {contactInfo.map((info, index) => (
-                  <li key={index}>
-                    <strong>{info.label}:</strong>{" "}
-                    <a
-                      href={info.link}
-                      className="text-blue-600 hover:underline"
+              <div>
+                <ul className="text-gray-600 flex flex-wrap">
+                  {contactInfo.map((info, index) => (
+                    <li
+                      key={index}
+                      className="flex items-center mb-2 w-full sm:w-1/2 lg:w-1/3"
                     >
-                      {info.value}
-                    </a>
-                  </li>
-                ))}
-              </ul>
+                      <span className="mr-2 text-xl">{info.icon}</span>
+                      <a
+                        href={info.link}
+                        className="text-blue-600 hover:underline ml-1"
+                      >
+                        <strong>{info.label}</strong>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
 
@@ -156,10 +174,19 @@ const App = () => {
             </div>
             <ul className="mt-2 text-gray-600">
               {experiences.map((exp, index) => (
-                <li key={index} className="mb-4">
-                  <div className="font-semibold text-gray-800">{exp.role}</div>
-                  <div className="text-gray-500">{exp.duration}</div>
-                  <div>{exp.description}</div>
+                <li key={index} className="mb-4 flex items-start">
+                  <img
+                    src={exp.icon}
+                    alt={exp.role}
+                    className="h-12 w-12 mr-4"
+                  />
+                  <div>
+                    <div className="font-semibold text-gray-800">
+                      {exp.role}
+                    </div>
+                    <div className="text-gray-500">{exp.duration}</div>
+                    <div>{exp.description}</div>
+                  </div>
                 </li>
               ))}
             </ul>
